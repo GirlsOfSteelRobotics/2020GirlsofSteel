@@ -80,6 +80,10 @@ public class Chassis extends SubsystemBase {
 		SmartDashboard.putNumber("x", m_odometry.getPoseMeters().getTranslation().getX());
 		SmartDashboard.putNumber("y", m_odometry.getPoseMeters().getTranslation().getY());
 		SmartDashboard.putNumber("yaw", getHeading());
+		SmartDashboard.putNumber("right encoder", getRightEncoder());
+		SmartDashboard.putNumber("left encoder", getLeftEncoder());
+
+
 	}
 	
 	public CANSparkMax getLeftSparkMax() {
