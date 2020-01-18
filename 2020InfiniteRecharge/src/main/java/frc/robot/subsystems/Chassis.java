@@ -76,13 +76,16 @@ public class Chassis extends SubsystemBase {
 
 	@Override
 	public void periodic(){
+		m_odometry.update(Rotation2d.fromDegrees(getHeading()), leftEncoder.getPosition(),
+		rightEncoder.getPosition());
+
 		m_pigeon.getAccumGyro(m_Angles);
+		
 		SmartDashboard.putNumber("x", m_odometry.getPoseMeters().getTranslation().getX());
 		SmartDashboard.putNumber("y", m_odometry.getPoseMeters().getTranslation().getY());
 		SmartDashboard.putNumber("yaw", getHeading());
 		SmartDashboard.putNumber("right encoder", getRightEncoder());
 		SmartDashboard.putNumber("left encoder", getLeftEncoder());
-
 
 	}
 	
