@@ -80,9 +80,9 @@ public class Chassis extends SubsystemBase {
 		rightEncoder.getPosition());
 
 		m_pigeon.getAccumGyro(m_Angles);
-		
-		SmartDashboard.putNumber("x", m_odometry.getPoseMeters().getTranslation().getX());
-		SmartDashboard.putNumber("y", m_odometry.getPoseMeters().getTranslation().getY());
+
+		SmartDashboard.putNumber("x", getX());
+		SmartDashboard.putNumber("y", getY());
 		SmartDashboard.putNumber("yaw", getHeading());
 		SmartDashboard.putNumber("right encoder", getRightEncoder());
 		SmartDashboard.putNumber("left encoder", getLeftEncoder());
@@ -109,7 +109,17 @@ public class Chassis extends SubsystemBase {
 		return (leftEncoder.getPosition() + rightEncoder.getPosition()) / 2.0;
 	  }
 
-	  private double getHeading() {
+
+	  public double getX(){
+		  return  m_odometry.getPoseMeters().getTranslation().getX();
+	  }
+
+	  public double getY(){
+		return  m_odometry.getPoseMeters().getTranslation().getY();
+	}
+
+
+	  public double getHeading() {
 		return m_Angles[0];
 	}
 
