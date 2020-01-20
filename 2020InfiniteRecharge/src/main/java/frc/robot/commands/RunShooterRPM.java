@@ -20,6 +20,7 @@ double goalRPM;
 
   public RunShooterRPM(Shooter shooter, double goalRPM) {
     this.shooter = shooter;
+    this.goalRPM = goalRPM;
     super.addRequirements(shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -33,7 +34,7 @@ double goalRPM;
   @Override
   public void execute() {
       shooter.setRPM(goalRPM);
-      System.out.print("Trying to go to" + goalRPM);
+      System.out.println("Trying to go to" + goalRPM);
   }
 
   // Called once the command ends or is interrupted.
