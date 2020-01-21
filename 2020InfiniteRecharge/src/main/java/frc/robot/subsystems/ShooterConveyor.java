@@ -17,4 +17,8 @@ public class ShooterConveyor extends SubsystemBase {
     public void moveConveyor(){
         m_motor.set(1);
     }
+
+    public void stop(){
+        m_motor.set(0);
+    }
 }

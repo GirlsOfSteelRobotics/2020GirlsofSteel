@@ -17,4 +17,8 @@ public class ShooterIntake extends SubsystemBase {
     public void collectCells(){
         m_motor.set(1);
     }
+
+    public void stop(){
+        m_motor.set(0);
+    }
 }
