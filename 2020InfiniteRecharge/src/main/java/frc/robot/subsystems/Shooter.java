@@ -37,5 +37,6 @@ public class Shooter extends SubsystemBase {
 
     public void stop(){
         m_motor.set(0);
+        m_pidController.setReference(0, ControlType.kVelocity);
     }
 }
