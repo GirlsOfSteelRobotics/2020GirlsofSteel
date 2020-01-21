@@ -34,4 +34,8 @@ public class Shooter extends SubsystemBase {
     public void periodic(){
         SmartDashboard.putNumber("RPM", m_encoder.getVelocity());
     }
+
+    public void stop(){
+        m_motor.set(0);
+    }
 }
