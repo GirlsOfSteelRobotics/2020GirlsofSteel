@@ -32,7 +32,6 @@ ShooterIntake shooterIntake;
   @Override
   public void execute() {
       shooterIntake.collectCells();
-      System.out.println("Running intake cells command");
   }
 
   // Called once the command ends or is interrupted.

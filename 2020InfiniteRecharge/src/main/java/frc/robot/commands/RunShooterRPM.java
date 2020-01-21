@@ -34,7 +34,6 @@ double goalRPM;
   @Override
   public void execute() {
       shooter.setRPM(goalRPM);
-      System.out.println("Trying to go to" + goalRPM);
   }
 
   // Called once the command ends or is interrupted.
