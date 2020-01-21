@@ -31,6 +31,8 @@ ShooterIntake shooterIntake;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+      shooterIntake.collectCells();
+      System.out.println("Running intake cells command");
   }
 
   // Called once the command ends or is interrupted.

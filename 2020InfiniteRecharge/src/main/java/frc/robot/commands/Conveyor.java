@@ -31,6 +31,8 @@ ShooterConveyor shooterConveyor;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+      shooterConveyor.moveConveyor();
+      System.out.println("Running the conveyor command");
   }
 
   // Called once the command ends or is interrupted.
