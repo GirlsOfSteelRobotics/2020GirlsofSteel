@@ -23,8 +23,8 @@ public class Shooter extends SubsystemBase {
         m_encoder  = m_motor.getEncoder();
         m_pidController = m_motor.getPIDController();
 
-        m_pidController.setP(.1);
-        m_pidController.setFF(.2);
+        m_pidController.setP(0.1);
+        m_pidController.setFF(0.00139);
     } 
     
     public void setRPM(final double rpm) {
