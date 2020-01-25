@@ -3,7 +3,7 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Chassis;
 
-public class DriveDistance extends CommandBase {
+public class TurnToAngle extends CommandBase {
 
     Chassis chassis;
 
@@ -11,9 +11,9 @@ public class DriveDistance extends CommandBase {
     private double m_allowableError;
     private double m_error;
 
-    private double AUTO_KP = 0.1;
+    private double AUTO_KP = 0.05;
 
-	public DriveDistance(Chassis chassis, double distance, double allowableError) {
+	public TurnToAngle(Chassis chassis, double distance, double allowableError) {
 		// Use requires() here to declare subsystem dependencies
         //super.addRequirements(Shooter); When a subsystem is written, add the requires line back in.
         this.chassis = chassis;
