@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.commands.DriveByJoystick;
 import frc.robot.commands.autonomous.DriveDistance;
 import frc.robot.commands.autonomous.TimedDriveStraight;
+import frc.robot.commands.autonomous.TurnToAngle;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Limelight;
@@ -62,6 +63,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     //return new TimedDriveStraight(chassis, 5, 10);
-    return new DriveDistance(chassis, 100, 1);
+    //return new DriveDistance(chassis, 100, 1);
+    return new TurnToAngle(chassis, 90, 5);
   }
 }

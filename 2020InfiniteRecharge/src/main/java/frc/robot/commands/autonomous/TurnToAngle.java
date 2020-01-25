@@ -7,18 +7,18 @@ public class TurnToAngle extends CommandBase {
 
     Chassis chassis;
 
-    private double m_distance;
+    private double m_angle;
     private double m_allowableError;
     private double m_error;
 
-    private double AUTO_KP = 0.05;
+    private double AUTO_KP = 0.01;
 
-	public TurnToAngle(Chassis chassis, double distance, double allowableError) {
+	public TurnToAngle(Chassis chassis, double angle, double allowableError) {
 		// Use requires() here to declare subsystem dependencies
         //super.addRequirements(Shooter); When a subsystem is written, add the requires line back in.
         this.chassis = chassis;
 
-        m_distance = distance + chassis.getAverageEncoderDistance();
+        m_angle = angle + chassis.getHeading();
         m_allowableError = allowableError;
 	}
 
@@ -27,15 +27,15 @@ public class TurnToAngle extends CommandBase {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() { 
-        double currentDistance;
+        double currentAngle;
 
-        currentDistance = chassis.getAverageEncoderDistance();
+        currentAngle = chassis.getHeading();
 
-        m_error = m_distance - currentDistance;
+        m_error = m_angle - currentAngle;
 
-        double speed = m_error * AUTO_KP;
+        double turnSpeed = m_error * AUTO_KP;
 
-        chassis.setSpeed(speed);
+        chassis.setSpeedAndSteer(0, turnSpeed);
 
         //System.out.println("error:" + m_error + "speed:" + speed);
 	}
