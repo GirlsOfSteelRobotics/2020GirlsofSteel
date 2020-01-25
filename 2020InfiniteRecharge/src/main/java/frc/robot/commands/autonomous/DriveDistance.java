@@ -11,6 +11,8 @@ public class DriveDistance extends CommandBase {
     private double m_allowableError;
     private double m_error;
 
+    private double AUTO_KP = 0.1;
+
 	public DriveDistance(Chassis chassis, double distance, double error) {
 		// Use requires() here to declare subsystem dependencies
         //super.addRequirements(Shooter); When a subsystem is written, add the requires line back in.
@@ -28,19 +30,17 @@ public class DriveDistance extends CommandBase {
         double currentDistance;
         currentDistance = chassis.getAverageEncoderDistance();
 
-        if(currentDistance > m_distance) {
-            chassis.setSpeed(1);
-        }
-        else {
-            chassis.setSpeed(-1);
-        }
-
         m_error = m_distance - currentDistance;
+        
+        chassis.setSpeed(m_error * AUTO_KP);
+
+        System.out.println("error:" + m_error);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	public boolean isFinished() {
-        if(m_error < m_allowableError){
+        if(Math.abs(m_error) < m_allowableError){
+            System.out.println("Done!");
             return true;
         }
         else {
