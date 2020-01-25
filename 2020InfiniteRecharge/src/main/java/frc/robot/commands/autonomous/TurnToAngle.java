@@ -11,7 +11,7 @@ public class TurnToAngle extends CommandBase {
     private double m_allowableError;
     private double m_error;
 
-    private double AUTO_KP = 0.01;
+    private double AUTO_KP = 0.05;
 
 	public TurnToAngle(Chassis chassis, double angle, double allowableError) {
 		// Use requires() here to declare subsystem dependencies
