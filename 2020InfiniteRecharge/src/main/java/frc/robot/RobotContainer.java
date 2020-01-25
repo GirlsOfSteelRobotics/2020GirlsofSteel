@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.DriveByJoystick;
 import frc.robot.commands.autonomous.DriveDistance;
+import frc.robot.commands.autonomous.GoToPosition;
 import frc.robot.commands.autonomous.TimedDriveStraight;
 import frc.robot.commands.autonomous.TurnToAngle;
 import frc.robot.subsystems.Chassis;
@@ -63,14 +64,8 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    SequentialCommandGroup group = new SequentialCommandGroup();
-    group.addCommands(new DriveDistance(chassis, 100, 1));
-    group.addCommands(new TurnToAngle(chassis, 90, 3));
-    group.addCommands(new DriveDistance(chassis, 50, 1));
-    group.addCommands(new TurnToAngle(chassis, 45, 3));
-    group.addCommands(new DriveDistance(chassis, 25, 1));
-
-    return group;
+    
+    return new GoToPosition(chassis, 27 * 12, -13.5 * 12);
     //return new TimedDriveStraight(chassis, 5, 10);
     //return new DriveDistance(chassis, 100, 1);
     //return new TurnToAngle(chassis, 90, 5);
