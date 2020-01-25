@@ -47,7 +47,7 @@ public class TurnToAngle extends CommandBase {
             return true;
         }
         else {
-            System.out.println("error:" + m_error + "allowableError" + m_allowableError);
+            System.out.println("Turn to angle" + "error:" + m_error + "allowableError" + m_allowableError);
             return false;
         }
 	}
