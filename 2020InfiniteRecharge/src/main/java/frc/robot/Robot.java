@@ -112,4 +112,9 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  public RobotContainer getContainer()
+  {
+    return m_robotContainer;
+  }
 }
