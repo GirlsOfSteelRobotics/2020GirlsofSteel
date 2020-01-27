@@ -66,10 +66,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    
     return new GoToPosition(chassis, 27 * 12, -13.5 * 12);
-    //return new TimedDriveStraight(chassis, 5, 10);
-    //return new DriveDistance(chassis, 100, 1);
-    //return new TurnToAngle(chassis, 90, 5);
   }
 }
