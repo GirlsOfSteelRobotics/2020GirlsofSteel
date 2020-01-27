@@ -8,15 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.DriveByJoystick;
-<<<<<<< HEAD
-import frc.robot.commands.autonomous.DriveDistance;
 import frc.robot.commands.autonomous.GoToPosition;
-import frc.robot.commands.autonomous.TimedDriveStraight;
-=======
-import frc.robot.commands.WinchWind;
-import frc.robot.commands.autonomous.DriveDistance;
->>>>>>> origin/master
-import frc.robot.commands.autonomous.TurnToAngle;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Limelight;
@@ -26,7 +18,6 @@ import frc.robot.subsystems.ShooterIntake;
 import frc.robot.subsystems.Winch;
 import frc.robot.subsystems.Lift;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a

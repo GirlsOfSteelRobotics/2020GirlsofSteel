@@ -13,7 +13,6 @@ public class AutoShoot extends CommandBase {
 
 
 	public AutoShoot() {
-		requires(Robot.Shooter);
 		shooter = Robot.shooter;
 		OI = Robot.OI;
 		// Use requires() here to declare subsystem dependencies
@@ -25,7 +24,6 @@ public class AutoShoot extends CommandBase {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() { 
-		if(OI.XboxController.)
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
