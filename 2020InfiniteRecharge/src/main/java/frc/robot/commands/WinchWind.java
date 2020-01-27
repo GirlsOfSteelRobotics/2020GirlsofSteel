@@ -7,22 +7,21 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Chassis;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Winch;
 
-public class OuterShootAlign extends CommandBase {
+public class WinchWind extends CommandBase {
   /**
-   * Creates a new OuterShootAlign.
+   * Creates a new RotationControl.
    */
-  Limelight limelight;
-  Chassis chassis;
 
-  public OuterShootAlign(Chassis chassis, Limelight limelight) {
-    this.limelight = limelight;
-    this.chassis = chassis;
-    addRequirements(limelight);
-    addRequirements(chassis);
+  Winch WinchWind;
+  boolean wind;
+
+  public WinchWind(Winch WinchWind, boolean wind) {
+    this.WinchWind = WinchWind;
+    this.wind = wind;
+    super.addRequirements(WinchWind);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -34,13 +33,16 @@ public class OuterShootAlign extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //chassis.setSpeedAndSteer(limelight.getDriveCommand(), limelight.getSteerCommand());
-    chassis.setSteer(limelight.getSteerCommand());
-
+    if (wind)
+      WinchWind.wind();
+    else
+      WinchWind.unwind();
   }
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    WinchWind.stop();
   }
 
   // Returns true when the command should end.
