@@ -17,5 +17,6 @@ jobs:
       with:
         java-version: 1.11
     
-    - name: Build with Gradle
+    - name: Build
+      working-directory: 2020InfiniteRecharge
       run: ./gradlew build
