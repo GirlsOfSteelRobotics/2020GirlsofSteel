@@ -8,7 +8,10 @@
 package frc.robot;
 
 import frc.robot.commands.DriveByJoystick;
-import frc.robot.commands.autonomous.GoToPosition;
+import frc.robot.commands.WinchWind;
+import frc.robot.commands.autonomous.AutoShoot;
+import frc.robot.commands.autonomous.DriveDistance;
+import frc.robot.commands.autonomous.TurnToAngle;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Limelight;
@@ -67,5 +70,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return new GoToPosition(chassis, 27 * 12, -13.5 * 12);
+  }
+
+  public Chassis getChassis()
+  {
+    return chassis;
   }
 }
