@@ -50,7 +50,7 @@ public class DriveToPoint extends CommandBase {
         angle = Math.toDegrees(Math.atan2(dy, dx));
 
         currentDistance = chassis.getAverageEncoderDistance();
-        m_errorDistance = m_hyp - currentDistance;
+        m_errorDistance = m_hyp;
         double speed = m_errorDistance * AUTO_KP;
 
         currentAngle = chassis.getHeading();
