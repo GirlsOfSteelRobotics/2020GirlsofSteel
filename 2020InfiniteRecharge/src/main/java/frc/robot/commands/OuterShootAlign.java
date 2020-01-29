@@ -12,38 +12,31 @@ import frc.robot.subsystems.Chassis;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class OuterShootAlign extends CommandBase {
-  /**
-   * Creates a new OuterShootAlign.
-   */
-  Limelight limelight;
-  Chassis chassis;
+
+  private final Limelight m_limelight;
+  private final Chassis m_chassis;
 
   public OuterShootAlign(Chassis chassis, Limelight limelight) {
-    this.limelight = limelight;
-    this.chassis = chassis;
-    addRequirements(limelight);
-    addRequirements(chassis);
-    // Use addRequirements() here to declare subsystem dependencies.
+    this.m_limelight = limelight;
+    this.m_chassis = chassis;
+
+    addRequirements(limelight, chassis);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //chassis.setSpeedAndSteer(limelight.getDriveCommand(), limelight.getSteerCommand());
-    chassis.setSteer(limelight.getSteerCommand());
-
+    m_chassis.setSteer(m_limelight.getSteerCommand());
   }
-  // Called once the command ends or is interrupted.
+
   @Override
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

@@ -8,11 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.DriveByJoystick;
-import frc.robot.commands.WinchWind;
-import frc.robot.commands.autonomous.AutoShoot;
-import frc.robot.commands.autonomous.DriveDistance;
 import frc.robot.commands.autonomous.GoToPosition;
-import frc.robot.commands.autonomous.TurnToAngle;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Limelight;
@@ -29,18 +25,19 @@ import edu.wpi.first.wpilibj2.command.Command;
  * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
  * (including subsystems, commands, and button mappings) should be declared here.
  */
+@SuppressWarnings("PMD.SingularField")
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private final Chassis chassis;
-  private final ControlPanel controlPanel;
-  private final Limelight limelight;
-  private final Shooter shooter;
-  private final ShooterConveyor shooterConveyor;
-  private final ShooterIntake shooterIntake;
-  private final Winch winch;
-  private final Lift lift;
-  private final OI oi;
+  private final Chassis m_chassis;
+  private final ControlPanel m_controlPanel;
+  private final Limelight m_limelight;
+  private final Shooter m_shooter;
+  private final ShooterConveyor m_shooterConveyor;
+  private final ShooterIntake m_shooterIntake;
+  private final Winch m_winch;
+  private final Lift m_lift;
+  private final OI m_oi;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -48,20 +45,20 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add subsystems in this section:
-    chassis = new Chassis();
-    controlPanel = new ControlPanel();
-    limelight = new Limelight();
-    shooter = new Shooter();
-    shooterConveyor = new ShooterConveyor();
-    shooterIntake = new ShooterIntake();
-    winch = new Winch();
-    lift = new Lift();
+    m_chassis = new Chassis();
+    m_controlPanel = new ControlPanel();
+    m_limelight = new Limelight();
+    m_shooter = new Shooter();
+    m_shooterConveyor = new ShooterConveyor();
+    m_shooterIntake = new ShooterIntake();
+    m_winch = new Winch();
+    m_lift = new Lift();
 
 
     // This line has to be after all of the subsystems are created!
-    oi = new OI(chassis, controlPanel, limelight, shooter, shooterIntake, shooterConveyor, lift, winch);
+    m_oi = new OI(m_chassis, m_limelight, m_shooter, m_shooterIntake, m_shooterConveyor, m_lift, m_winch);
 
-    chassis.setDefaultCommand(new DriveByJoystick(chassis, oi));
+    m_chassis.setDefaultCommand(new DriveByJoystick(m_chassis, m_oi));
   }
 
   /**
@@ -70,11 +67,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new GoToPosition(chassis, 27 * 12, -13.5 * 12);
+    return new GoToPosition(m_chassis, 27 * 12, -13.5 * 12, 5, 1);
   }
 
-  public Chassis getChassis()
-  {
-    return chassis;
+  public Chassis getChassis()  {
+    return m_chassis;
   }
 }

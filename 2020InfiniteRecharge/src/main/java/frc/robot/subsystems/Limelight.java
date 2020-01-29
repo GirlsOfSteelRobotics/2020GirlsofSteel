@@ -13,6 +13,7 @@ import edu.wpi.first.networktables.*;
 /**
  * Add your docs here.
  */
+@SuppressWarnings("PMD")
 public class Limelight extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -28,7 +29,7 @@ public class Limelight extends SubsystemBase {
     System.out.println("Limelight"); 
   }
 
-  public double getSteerCommand(){
+  public double getSteerCommand() {
 
     double Kp = -0.1;           //proportional control constant - TUNE VALUE
     double min_command = 0.04;  //TUNE VALUE
@@ -36,10 +37,10 @@ public class Limelight extends SubsystemBase {
 
     double steering_adjust = 0.0;
     if (tx > 1.0){
-        steering_adjust = Kp*heading_error - min_command;
+        steering_adjust = Kp * heading_error - min_command;
     }
     else if (tx < 1.0){
-        steering_adjust = Kp*heading_error + min_command;
+        steering_adjust = Kp * heading_error + min_command;
     }
   
     return steering_adjust; 
@@ -52,9 +53,8 @@ public class Limelight extends SubsystemBase {
     */
 
   }
-  
 
-  public double getDriveCommand(){
+  public double getDriveCommand() {
     double DRIVE_K = 0.26;                    // how hard to drive fwd toward the target
     double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
     double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
@@ -65,10 +65,6 @@ public class Limelight extends SubsystemBase {
     }
     m_LimelightDriveCommand = drive_cmd;
     return m_LimelightDriveCommand;
-  }
-
-  
-  public void init(){
   }
 
   @Override

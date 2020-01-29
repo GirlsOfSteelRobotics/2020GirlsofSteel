@@ -8,24 +8,24 @@ import frc.robot.Constants;
 
 public class Lift extends SubsystemBase {
 
-    private final TalonSRX m_motor;
+  private final TalonSRX m_motor;
 
-	public Lift () {
-        m_motor = new TalonSRX(Constants.LIFT_TALON);
-        m_motor.configFactoryDefault();
-        m_motor.setInverted(false);
-    } 
+  public Lift() {
+    m_motor = new TalonSRX(Constants.LIFT_TALON);
+    m_motor.configFactoryDefault();
+    m_motor.setInverted(false);
+  } 
 
-    public void liftUp(){
-        m_motor.set(ControlMode.PercentOutput, 1);
-    }
+  public void liftUp() {
+    m_motor.set(ControlMode.PercentOutput, 1);
+  }
 
-    public void liftDown(){
-        m_motor.set(ControlMode.PercentOutput, -1);
-    }
+  public void liftDown() {
+    m_motor.set(ControlMode.PercentOutput, -1);
+  }
 
-    public void stop(){
-        m_motor.set(ControlMode.PercentOutput, 0);
-    }
+  public void stop() {
+    m_motor.set(ControlMode.PercentOutput, 0);
+  }
 
 }

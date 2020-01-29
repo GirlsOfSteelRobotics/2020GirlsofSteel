@@ -11,41 +11,36 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Winch;
 
 public class WinchWind extends CommandBase {
-  /**
-   * Creates a new RotationControl.
-   */
 
-  Winch WinchWind;
-  boolean wind;
+  private final Winch m_winchWind;
+  private final boolean m_wind;
 
-  public WinchWind(Winch WinchWind, boolean wind) {
-    this.WinchWind = WinchWind;
-    this.wind = wind;
-    super.addRequirements(WinchWind);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public WinchWind(Winch winchWind, boolean wind) {
+    this.m_winchWind = winchWind;
+    this.m_wind = wind;
+
+    super.addRequirements(winchWind);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (wind)
-      WinchWind.wind();
-    else
-      WinchWind.unwind();
+    if (m_wind) {
+      m_winchWind.wind();
+    }
+    else {
+      m_winchWind.unwind();
+    }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    WinchWind.stop();
+    m_winchWind.stop();
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

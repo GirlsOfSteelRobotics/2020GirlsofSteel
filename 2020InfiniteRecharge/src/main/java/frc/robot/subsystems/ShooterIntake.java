@@ -8,24 +8,23 @@ import frc.robot.Constants;
 
 public class ShooterIntake extends SubsystemBase {
 
-    private final TalonSRX m_motor;
+  private final TalonSRX m_motor;
 
-	public ShooterIntake () {
-        m_motor = new TalonSRX(Constants.SHOOTER_INTAKE_TALON);
-        m_motor.configFactoryDefault();
-        m_motor.setInverted(false);
-    } 
+  public ShooterIntake() {
+    m_motor = new TalonSRX(Constants.SHOOTER_INTAKE_TALON);
+    m_motor.configFactoryDefault();
+    m_motor.setInverted(false);
+  } 
 
-    public void collectCells(){
-        m_motor.set(ControlMode.PercentOutput, 1);
-    }
+  public void collectCells() {
+    m_motor.set(ControlMode.PercentOutput, 1);
+  }
 
-    public void decollectCells(){
-        m_motor.set(ControlMode.PercentOutput, -1);
-    }
+  public void decollectCells() {
+    m_motor.set(ControlMode.PercentOutput, -1);
+  }
 
-    public void stop(){
-        m_motor.set(ControlMode.PercentOutput, 0);
-    }
-
+  public void stop() {
+    m_motor.set(ControlMode.PercentOutput, 0);
+  }
 }

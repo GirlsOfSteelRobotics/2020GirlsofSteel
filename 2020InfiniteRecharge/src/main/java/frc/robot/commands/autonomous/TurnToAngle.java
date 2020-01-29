@@ -5,55 +5,52 @@ import frc.robot.subsystems.Chassis;
 
 public class TurnToAngle extends CommandBase {
 
-    Chassis chassis;
+  private static final double AUTO_KP = 0.05;
 
-    private double m_angle;
-    private double m_allowableError;
-    private double m_error;
+  private final Chassis m_chassis;
+  private final double m_angle;
+  private final double m_allowableError;
 
-    private double AUTO_KP = 0.05;
+  private double m_error;
 
-	public TurnToAngle(Chassis chassis, double angle, double allowableError) {
-		// Use requires() here to declare subsystem dependencies
-        //super.addRequirements(Shooter); When a subsystem is written, add the requires line back in.
-        this.chassis = chassis;
+  public TurnToAngle(Chassis chassis, double angle, double allowableError) {
+    m_chassis = chassis;
 
-        m_angle = angle;
-        m_allowableError = allowableError;
-	}
+    m_angle = angle;
+    m_allowableError = allowableError;
 
-    public void initialize(){
+    addRequirements(chassis);
+  }
+
+  @Override
+  public void initialize(){
+  }
+
+  @Override
+  public void execute() {
+    double currentAngle = m_chassis.getHeading();
+    m_error = m_angle - currentAngle;
+
+    double turnSpeed = m_error * AUTO_KP;
+    m_chassis.setSpeedAndSteer(0, turnSpeed);
+
+    //System.out.println("error:" + m_error + "speed:" + speed);
+  }
+
+  @Override
+  public boolean isFinished() {
+    if (Math.abs(m_error) < m_allowableError) {
+      System.out.println("Done!");
+      return true;
     }
+    else {
+      System.out.println("Turn to angle" + "error:" + m_error + "allowableError" + m_allowableError);
+      return false;
+    }
+  }
 
-	// Called repeatedly when this Command is scheduled to run
-	public void execute() { 
-        double currentAngle;
-
-        currentAngle = chassis.getHeading();
-
-        m_error = m_angle - currentAngle;
-
-        double turnSpeed = m_error * AUTO_KP;
-
-        chassis.setSpeedAndSteer(0, turnSpeed);
-
-        //System.out.println("error:" + m_error + "speed:" + speed);
-	}
-
-	// Make this return true when this Command no longer needs to run execute()
-	public boolean isFinished() {
-        if(Math.abs(m_error) < m_allowableError){
-            System.out.println("Done!");
-            return true;
-        }
-        else {
-            System.out.println("Turn to angle" + "error:" + m_error + "allowableError" + m_allowableError);
-            return false;
-        }
-	}
-
-	// Called once after isFinished returns true
-	public void end(boolean interrupted) {
-        chassis.setSpeed(0);
+  @Override
+  public void end(boolean interrupted) {
+    m_chassis.setSpeed(0);
   }
 }

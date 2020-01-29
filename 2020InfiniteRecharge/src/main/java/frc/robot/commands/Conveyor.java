@@ -11,41 +11,35 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterConveyor;
 
 public class Conveyor extends CommandBase {
-  /**
-   * Creates a new RotationControl.
-   */
-
-ShooterConveyor shooterConveyor;
-boolean intake;
+  private final ShooterConveyor m_shooterConveyor;
+  private final boolean m_intake;
 
   public Conveyor(ShooterConveyor shooterConveyor, boolean intake) {
-    this.shooterConveyor = shooterConveyor;
-    this.intake = intake;
+    this.m_shooterConveyor = shooterConveyor;
+    this.m_intake = intake;
+
     super.addRequirements(shooterConveyor);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (intake)
-      shooterConveyor.inConveyor();
-    else
-      shooterConveyor.outConveyor();
+    if (m_intake) {
+      m_shooterConveyor.inConveyor();
+    }
+    else {
+      m_shooterConveyor.outConveyor();
+    }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      shooterConveyor.stop();
+    m_shooterConveyor.stop();
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
