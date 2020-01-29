@@ -8,10 +8,10 @@ import frc.robot.subsystems.ShooterConveyor;
 
 public class AutoShoot extends ParallelCommandGroup {
 
-  public AutoShoot(Shooter shooter, ShooterConveyor shooterConveyor, double rpm, double time) {
+    public AutoShoot(Shooter shooter, ShooterConveyor shooterConveyor, double rpm, double time) {
 
-    super.addCommands(new RunShooterRPM(shooter, rpm).withTimeout(time));
-    super.addCommands(new Conveyor(shooterConveyor, true).withTimeout(time));
+        super.addCommands(new RunShooterRPM(shooter, rpm).withTimeout(time));
+        super.addCommands(new Conveyor(shooterConveyor, true).withTimeout(time));
 
-  }
+    }
 }

@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.            */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code     */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                 */
+/* the project.                                                                 */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
@@ -16,19 +16,19 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static final int DRIVE_LEFT_MASTER_SPARK = 1;
-  public static final int DRIVE_LEFT_FOLLOWER_SPARK = 2;
-  public static final int DRIVE_RIGHT_MASTER_SPARK = 3;
-  public static final int DRIVE_RIGHT_FOLLOWER_SPARK = 4;
-  public static final int CONTROL_PANEL_SPARK = 5;
-  public static final int SHOOTER_CONVEYOR_SPARK = 6;
+    public static final int DRIVE_LEFT_MASTER_SPARK = 1;
+    public static final int DRIVE_LEFT_FOLLOWER_SPARK = 2;
+    public static final int DRIVE_RIGHT_MASTER_SPARK = 3;
+    public static final int DRIVE_RIGHT_FOLLOWER_SPARK = 4;
+    public static final int CONTROL_PANEL_SPARK = 5;
+    public static final int SHOOTER_CONVEYOR_SPARK = 6;
 
-  public static final int SHOOTER_TALON = 7;
-  public static final int SHOOTER_INTAKE_TALON = 8;
-  public static final int WINCH_A_TALON = 9;
-  public static final int WINCH_B_TALON = 10;
-  public static final int LIFT_TALON = 11;
+    public static final int SHOOTER_TALON = 7;
+    public static final int SHOOTER_INTAKE_TALON = 8;
+    public static final int WINCH_A_TALON = 9;
+    public static final int WINCH_B_TALON = 10;
+    public static final int LIFT_TALON = 11;
 
-  public static final int SPARK_MAX_CURRENT_LIMIT = 60;
-  public static final int CTRE_TIMEOUT = 30;
+    public static final int SPARK_MAX_CURRENT_LIMIT = 60;
+    public static final int CTRE_TIMEOUT = 30;
 }

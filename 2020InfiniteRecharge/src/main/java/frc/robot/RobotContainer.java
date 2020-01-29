@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                                                */
+/* Open Source Software - may be modified and shared by FRC teams. The code     */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project.                                                                                                                             */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
@@ -27,50 +27,50 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 @SuppressWarnings("PMD.SingularField")
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+    // The robot's subsystems and commands are defined here...
 
-  private final Chassis m_chassis;
-  private final ControlPanel m_controlPanel;
-  private final Limelight m_limelight;
-  private final Shooter m_shooter;
-  private final ShooterConveyor m_shooterConveyor;
-  private final ShooterIntake m_shooterIntake;
-  private final Winch m_winch;
-  private final Lift m_lift;
-  private final OI m_oi;
+    private final Chassis m_chassis;
+    private final ControlPanel m_controlPanel;
+    private final Limelight m_limelight;
+    private final Shooter m_shooter;
+    private final ShooterConveyor m_shooterConveyor;
+    private final ShooterIntake m_shooterIntake;
+    private final Winch m_winch;
+    private final Lift m_lift;
+    private final OI m_oi;
 
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
-  public RobotContainer() {
+    /**
+     * The container for the robot.    Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
 
-    //Add subsystems in this section:
-    m_chassis = new Chassis();
-    m_controlPanel = new ControlPanel();
-    m_limelight = new Limelight();
-    m_shooter = new Shooter();
-    m_shooterConveyor = new ShooterConveyor();
-    m_shooterIntake = new ShooterIntake();
-    m_winch = new Winch();
-    m_lift = new Lift();
+        //Add subsystems in this section:
+        m_chassis = new Chassis();
+        m_controlPanel = new ControlPanel();
+        m_limelight = new Limelight();
+        m_shooter = new Shooter();
+        m_shooterConveyor = new ShooterConveyor();
+        m_shooterIntake = new ShooterIntake();
+        m_winch = new Winch();
+        m_lift = new Lift();
 
 
-    // This line has to be after all of the subsystems are created!
-    m_oi = new OI(m_chassis, m_limelight, m_shooter, m_shooterIntake, m_shooterConveyor, m_lift, m_winch);
+        // This line has to be after all of the subsystems are created!
+        m_oi = new OI(m_chassis, m_limelight, m_shooter, m_shooterIntake, m_shooterConveyor, m_lift, m_winch);
 
-    m_chassis.setDefaultCommand(new DriveByJoystick(m_chassis, m_oi));
-  }
+        m_chassis.setDefaultCommand(new DriveByJoystick(m_chassis, m_oi));
+    }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    return new GoToPosition(m_chassis, 27 * 12, -13.5 * 12, 5, 1);
-  }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        return new GoToPosition(m_chassis, 27 * 12, -13.5 * 12, 5, 1);
+    }
 
-  public Chassis getChassis()  {
-    return m_chassis;
-  }
+    public Chassis getChassis()    {
+        return m_chassis;
+    }
 }
