@@ -24,9 +24,9 @@ public class GoToPosition extends SequentialCommandGroup {
         dy = finalPositionY - chassis.getY();
         
         hyp = Math.sqrt((dx * dx) + (dy * dy));
-        angle = Math.toDegrees(Math.acos(dx / hyp));
+        angle = Math.toDegrees(Math.atan2(dy, dx));
 
-        System.out.println("hypotenuse" + hyp + "angle" + angle);
+        System.out.println("angle" + angle);
 
         super.addCommands(new TurnToAngle(chassis, angle, 5));
         super.addCommands(new DriveDistance(chassis, hyp, 1));
