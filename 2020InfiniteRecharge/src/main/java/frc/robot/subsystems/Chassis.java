@@ -6,10 +6,15 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -33,6 +38,8 @@ public class Chassis extends SubsystemBase {
 
 	private final double[] m_Angles = new double[3];
 
+	private final NetworkTable m_customNetworkTable;
+	private int m_robotPositionCtr; // Used for downsampling the updates
 
 	public Chassis () {
 		masterLeft = new CANSparkMax(Constants.DRIVE_LEFT_MASTER_SPARK, MotorType.kBrushless);
@@ -68,6 +75,11 @@ public class Chassis extends SubsystemBase {
 		drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
 		drive.setMaxOutput(0.8);
+
+		NetworkTable coordinateGuiContainer = NetworkTableInstance.getDefault().getTable("CoordinateGui");
+		coordinateGuiContainer.getEntry(".type").setString("CoordinateGui");
+
+		m_customNetworkTable = coordinateGuiContainer.getSubTable("RobotPosition");
 	}
 
 	
@@ -87,6 +99,16 @@ public class Chassis extends SubsystemBase {
 		SmartDashboard.putNumber("right encoder", getRightEncoder());
 		SmartDashboard.putNumber("left encoder", getLeftEncoder());
 
+		m_customNetworkTable.getEntry("X").setDouble(getX());
+		m_customNetworkTable.getEntry("Y").setDouble(getY());
+		m_customNetworkTable.getEntry("Angle").setDouble(getHeading());
+
+		// Actually update the display every 5 loops = 100ms
+		if(m_robotPositionCtr % 5 == 0)
+		{
+			m_customNetworkTable.getEntry("Ctr").setDouble(m_robotPositionCtr);
+		}
+		++m_robotPositionCtr;
 	}
 	
 	public CANSparkMax getLeftSparkMax() {
