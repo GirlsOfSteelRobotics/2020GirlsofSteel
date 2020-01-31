@@ -6,6 +6,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -32,6 +34,9 @@ public class Chassis extends SubsystemBase {
     private final DifferentialDriveOdometry m_odometry;
 
     private final double[] m_angles = new double[3];
+
+    private final NetworkTable m_customNetworkTable;
+    private int m_robotPositionCtr; // Used for downsampling the updates
 
 
     public Chassis() {
@@ -68,6 +73,11 @@ public class Chassis extends SubsystemBase {
         m_drive.setSafetyEnabled(true);
         m_drive.setExpiration(0.1);
         m_drive.setMaxOutput(0.8);
+
+        NetworkTable coordinateGuiContainer = NetworkTableInstance.getDefault().getTable("CoordinateGui");
+        coordinateGuiContainer.getEntry(".type").setString("CoordinateGui");
+
+        m_customNetworkTable = coordinateGuiContainer.getSubTable("RobotPosition");
     }
 
     @Override
