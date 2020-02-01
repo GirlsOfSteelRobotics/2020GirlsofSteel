@@ -15,39 +15,39 @@ public class CameraSimulator extends BaseCameraSimulator {
 
     private static final List<TargetLocation> VISION_TARGETS;
 
-    private final Chassis mChassis;
-    private final NetworkTable mMockLimelightTable;
-    private final NetworkTable mLimelightRayTable;
+    private final Chassis m_chassis;
+    private final NetworkTable m_mockLimelightTable;
+    private final NetworkTable m_limelightRayTable;
 
     static {
         VISION_TARGETS = new ArrayList<>();
 
-        double field_long_dim = 52 * 12 + 5.25;
-        double field_short_dim = 26 * 12 + 11.25;
-        double target_offset = 5.5 * 12;
+        double fieldLongDim = 52 * 12 + 5.25;
+        double fieldShortDim = 26 * 12 + 11.25;
+        double targetOffset = 5.5 * 12;
 
-        VISION_TARGETS.add(new TargetLocation("Top", field_long_dim, -field_short_dim / 2 - target_offset, 0, 0.0, null, null, null));
-        VISION_TARGETS.add(new TargetLocation("Bot", 0, -field_short_dim / 2 + target_offset, -180, null, -field_short_dim, null, 0.0));
+        VISION_TARGETS.add(new TargetLocation("Top", fieldLongDim, -fieldShortDim / 2 - targetOffset, 0, 0.0, null, null, null));
+        VISION_TARGETS.add(new TargetLocation("Bot", 0, -fieldShortDim / 2 + targetOffset, -180, null, -fieldShortDim, null, 0.0));
     }
 
-    public CameraSimulator(Robot aRobot) {
+    public CameraSimulator(Robot robot) {
         super(CAMERA_FOV);
 
-        mChassis = aRobot.getContainer().getChassis();
-        mMockLimelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+        m_chassis = robot.getContainer().getChassis();
+        m_mockLimelightTable = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTable coordinateGuiTable = NetworkTableInstance.getDefault().getTable("CoordinateGui");
         coordinateGuiTable.getEntry(".type").setString("CoordinateGui");
 
-        mLimelightRayTable = coordinateGuiTable.getSubTable("CameraSim");
-        mLimelightRayTable.getEntry(".type").setString("CameraSim");
+        m_limelightRayTable = coordinateGuiTable.getSubTable("CameraSim");
+        m_limelightRayTable.getEntry(".type").setString("CameraSim");
     }
 
     @SuppressWarnings("PMD")
     public void update() {
 
-        double robotX = mChassis.getX();
-        double robotY = mChassis.getY();
-        double robotAngle = mChassis.getHeading();
+        double robotX = m_chassis.getX();
+        double robotY = m_chassis.getY();
+        double robotAngle = m_chassis.getHeading();
 
         double minDistance = Double.MAX_VALUE;
         TargetLocation bestTarget = null;
@@ -55,8 +55,8 @@ public class CameraSimulator extends BaseCameraSimulator {
 
         for (TargetLocation loc : VISION_TARGETS) {
 
-            double dx = loc.mX - robotX;
-            double dy = loc.mY - robotY;
+            double dx = loc.m_x - robotX;
+            double dy = loc.m_y - robotY;
             double dAngle = Math.toDegrees(Math.atan2(dy, dx));
             double angleFromRobot = dAngle - robotAngle;
 
@@ -69,32 +69,32 @@ public class CameraSimulator extends BaseCameraSimulator {
             }
 
             TargetDeltaStruct deltaStruct = new TargetDeltaStruct();
-            deltaStruct.mDistance = Math.sqrt(dx * dx + dy * dy);
-            deltaStruct.mAngle = angleFromRobot;
+            deltaStruct.m_distance = Math.sqrt(dx * dx + dy * dy);
+            deltaStruct.m_angle = angleFromRobot;
 
             if (isTargetValid(deltaStruct, robotX, robotY, robotAngle, loc) == RejectionReason.VALID) {
-                if (deltaStruct.mDistance < minDistance && deltaStruct.mDistance < CAMERA_MAX_DISTANCE) {
+                if (deltaStruct.m_distance < minDistance && deltaStruct.m_distance < CAMERA_MAX_DISTANCE) {
                     bestTargetDelta = deltaStruct;
                     bestTarget = loc;
-                    minDistance = deltaStruct.mDistance;
+                    minDistance = deltaStruct.m_distance;
                 }
             }
         }
 
         if (bestTargetDelta == null) {
-            mMockLimelightTable.getEntry("tv").setNumber(0);
+            m_mockLimelightTable.getEntry("tv").setNumber(0);
 
-            mLimelightRayTable.getEntry("Positions").setString("");
+            m_limelightRayTable.getEntry("Positions").setString("");
         } else {
             double el = Math.toDegrees(
-                Math.atan2(100, bestTargetDelta.mDistance));
-            double az = bestTargetDelta.mAngle;
-            mMockLimelightTable.getEntry("tv").setNumber(1);
-            mMockLimelightTable.getEntry("tx").setNumber(az);
-            mMockLimelightTable.getEntry("ty").setNumber(el);
+                Math.atan2(100, bestTargetDelta.m_distance));
+            double az = bestTargetDelta.m_angle;
+            m_mockLimelightTable.getEntry("tv").setNumber(1);
+            m_mockLimelightTable.getEntry("tx").setNumber(az);
+            m_mockLimelightTable.getEntry("ty").setNumber(el);
 
-            String positionsText = robotX + "," + robotY + "," + bestTarget.mX + "," + bestTarget.mY;
-            mLimelightRayTable.getEntry("Positions").setString(positionsText);
+            String positionsText = robotX + "," + robotY + "," + bestTarget.m_x + "," + bestTarget.m_y;
+            m_limelightRayTable.getEntry("Positions").setString(positionsText);
         }
 
     }

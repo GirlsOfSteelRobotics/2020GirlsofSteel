@@ -9,34 +9,28 @@ import org.apache.logging.log4j.Logger;
 import edu.wpi.first.hal.sim.SimDeviceSim;
 import edu.wpi.first.hal.sim.mockdata.SimDeviceDataJNI.SimDeviceInfo;
 
-public final class SimDeviceDumpHelper
-{
+public final class SimDeviceDumpHelper {
     private static final Logger sLOGGER = LogManager.getLogger(SimDeviceDumpHelper.class);
 
-    private SimDeviceDumpHelper()
-    {
+    private SimDeviceDumpHelper() {
         // Nothing to do
     }
 
     @SuppressWarnings("PMD.ConsecutiveLiteralAppends")
-    public static void dumpSimDevices()
-    {
+    public static void dumpSimDevices() {
         StringBuilder builder = new StringBuilder(200);
         builder.append("***************************************************\nDumping devices:\n");
-        for (SimDeviceInfo x : SimDeviceSim.enumerateDevices(""))
-        {
+        for (SimDeviceInfo x : SimDeviceSim.enumerateDevices("")) {
             builder.append("Got a device: \n");
             Field privateStringField;
-            try 
-            {
+            try {
                 privateStringField = SimDeviceInfo.class.getDeclaredField("name");
             
                 privateStringField.setAccessible(true);
                 
-                builder.append("  ").append(privateStringField.get(x)).append('\n');
+                builder.append("    ").append(privateStringField.get(x)).append('\n');
             } 
-            catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) 
-            {
+            catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
                 sLOGGER.log(Level.ERROR, "Failed to get sim device", ex);
             }
         }
