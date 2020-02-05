@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.Pane?>
+<Pane fx:id="mPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gos.infinite_recharge.sd_widgets.super_structure.SuperStructureController">
+
+    <children>
+        <Group fx:id="m_group">
+            <children>
+            </children>
+        </Group>
+    </children>
+</Pane>
