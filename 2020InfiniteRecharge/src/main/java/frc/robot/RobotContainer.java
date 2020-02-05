@@ -8,6 +8,7 @@
 package frc.robot;
 
 import frc.robot.commands.DriveByJoystick;
+import frc.robot.commands.TuneRPM;
 import frc.robot.commands.autonomous.DriveDistance;
 import frc.robot.commands.autonomous.DriveToPoint;
 import frc.robot.commands.autonomous.SetStartingPosition;
@@ -81,6 +82,7 @@ public class RobotContainer {
         m_sendableChooser.addOption("Test. Drive Distance Backward", new DriveDistance(m_chassis, -60, 1));
         m_sendableChooser.addOption("Test. Timed Drive Straight Forward", new TimedDriveStraight(m_chassis, 2, 0.5));
         m_sendableChooser.addOption("Test. Timed Drive Straight Backward", new TimedDriveStraight(m_chassis, 2, -0.5));
+        m_sendableChooser.addOption("Test. TuneRPM", new TuneRPM(m_shooter));
         SmartDashboard.putData("Auto Mode", m_sendableChooser);
 
         // This line has to be after all of the subsystems are created!
@@ -97,7 +99,9 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         SequentialCommandGroup group = new SequentialCommandGroup();
         group.addCommands(new SetStartingPosition(m_chassis, 27 * 12, -13.5 * 12, 0));
-        group.addCommands(m_sendableChooser.getSelected());
+        if (m_sendableChooser.getSelected() != null) {
+            group.addCommands(m_sendableChooser.getSelected());
+        }
         return group;
     }
 
