@@ -23,7 +23,7 @@ import frc.robot.subsystems.ShooterConveyor;
 import frc.robot.subsystems.ShooterIntake;
 import frc.robot.subsystems.Winch;
 import frc.robot.subsystems.Lift;
-//import frc.robot.subsystems.Camera;
+import frc.robot.subsystems.Camera;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,7 +39,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
 
-   // private final Camera m_camera;
+    private final Camera m_camera;
     private final Chassis m_chassis;
     private final ControlPanel m_controlPanel;
     private final Limelight m_limelight;
@@ -57,7 +57,7 @@ public class RobotContainer {
     public RobotContainer() {
 
         //Add subsystems in this section:
-       // m_camera = new Camera ();
+        m_camera = new Camera ();
         // Todo: change drivercam constant to display camera feed
         m_chassis = new Chassis();
         m_controlPanel = new ControlPanel();
@@ -92,7 +92,7 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", m_sendableChooser);
 
         // This line has to be after all of the subsystems are created!
-        m_oi = new OI(m_chassis, m_controlPanel, m_limelight, m_shooter, m_shooterIntake, m_shooterConveyor, m_lift, m_winch);
+        m_oi = new OI(m_chassis, m_controlPanel, m_limelight, m_camera, m_shooter, m_shooterIntake, m_shooterConveyor, m_lift, m_winch);
 
         m_chassis.setDefaultCommand(new DriveByJoystick(m_chassis, m_oi));
     }
