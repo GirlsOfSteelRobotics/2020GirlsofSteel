@@ -13,7 +13,16 @@ mAnalogIn: []
 mAnalogOut: []
 mDefaultI2CWrappers: {}
 mDefaultSpiWrappers: {}
-mDigitalIO: []
+mDigitalIO:
+- mHandle: 0
+  mName: Handoff Ball Sensor
+  mType: com.snobot.simulator.module_wrapper.wpi.WpiDigitalIoWrapper
+- mHandle: 1
+  mName: Secondary Ball Sensor
+  mType: com.snobot.simulator.module_wrapper.wpi.WpiDigitalIoWrapper
+- mHandle: 2
+  mName: Top Ball Sensor
+  mType: com.snobot.simulator.module_wrapper.wpi.WpiDigitalIoWrapper
 mEncoders:
 - mConnectedSpeedControllerHandle: 107
   mHandle: 107
@@ -69,16 +78,8 @@ mPwm:
   mName: Control Panel
   mType: com.snobot.simulator.simulator_components.ctre.CtreTalonSrxSpeedControllerSim
 - mHandle: 106
-  mMotorModelConfig:
-    mGearReduction: 5.0
-    mGearboxEfficiency: 0.8
-    mHasBrake: false
-    mInverted: false
-    mMotorType: CIM
-    mNumMotors: 2
-  mMotorSimConfig: !!com.snobot.simulator.motor_sim.StaticLoadMotorSimulationConfig
-    mConversionFactor: 1.0
-    mLoad: 0.25
+  mMotorModelConfig: null
+  mMotorSimConfig: null
   mName: Shooter Conveyor (M)
   mType: com.snobot.simulator.simulator_components.rev.RevSpeedControllerSimWrapper
 - mHandle: 107
@@ -101,23 +102,36 @@ mPwm:
   mName: Right Drive (F)
   mType: com.snobot.simulator.simulator_components.rev.RevSpeedControllerSimWrapper
 - mHandle: 109
-  mMotorModelConfig: null
-  mMotorSimConfig: !!com.snobot.simulator.motor_sim.SimpleMotorSimulationConfig
-    mMaxSpeed: 0.0
+  mMotorModelConfig:
+    mGearReduction: 10.0
+    mGearboxEfficiency: 0.8
+    mHasBrake: false
+    mInverted: false
+    mMotorType: CIM
+    mNumMotors: 2
+  mMotorSimConfig: !!com.snobot.simulator.motor_sim.StaticLoadMotorSimulationConfig
+    mConversionFactor: 3.14
+    mLoad: 0.25
   mName: Shooter (M)
-  mType: com.snobot.simulator.simulator_components.ctre.CtreTalonSrxSpeedControllerSim
+  mType: com.snobot.simulator.simulator_components.rev.RevSpeedControllerSimWrapper
 - mHandle: 110
   mMotorModelConfig: null
   mMotorSimConfig: !!com.snobot.simulator.motor_sim.SimpleMotorSimulationConfig
     mMaxSpeed: 0.0
   mName: Shooter (F)
-  mType: com.snobot.simulator.simulator_components.ctre.CtreTalonSrxSpeedControllerSim
+  mType: com.snobot.simulator.simulator_components.rev.RevSpeedControllerSimWrapper
 - mHandle: 111
   mMotorModelConfig: null
   mMotorSimConfig: !!com.snobot.simulator.motor_sim.SimpleMotorSimulationConfig
     mMaxSpeed: 0.0
   mName: Shooter Intake
   mType: com.snobot.simulator.simulator_components.ctre.CtreTalonSrxSpeedControllerSim
+- mHandle: 112
+  mMotorModelConfig: null
+  mMotorSimConfig: !!com.snobot.simulator.motor_sim.SimpleMotorSimulationConfig
+    mMaxSpeed: 0.0
+  mName: Shooter Conveyor (F)
+  mType: com.snobot.simulator.simulator_components.rev.RevSpeedControllerSimWrapper
 - mHandle: 113
   mMotorModelConfig:
     mGearReduction: 10.0
