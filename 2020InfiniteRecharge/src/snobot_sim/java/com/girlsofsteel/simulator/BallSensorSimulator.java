@@ -31,7 +31,7 @@ public class BallSensorSimulator {
         boolean handOffSensor = m_networkTable.getEntry("Handoff").getBoolean(false);
         boolean secondarySensor = m_networkTable.getEntry("Secondary").getBoolean(false);
         boolean topSensor = m_networkTable.getEntry("Top").getBoolean(false);
-        System.out.println(handOffSensor + ", " + secondarySensor + ", " + topSensor);
+        // System.out.println(handOffSensor + ", " + secondarySensor + ", " + topSensor);
 
         m_handoffWrapper.set(handOffSensor);
         m_secondaryWrapper.set(secondarySensor); 

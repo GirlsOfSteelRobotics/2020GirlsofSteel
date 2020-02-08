@@ -37,6 +37,21 @@ public class ShooterConveyor extends SubsystemBase {
         SmartDashboard.putBoolean("Break Sensor Handoff: ", m_breakSensorHandoff.get()); 
         SmartDashboard.putBoolean("Break Sensor Secondary: ", m_breakSensorSecondary.get()); 
         SmartDashboard.putBoolean("Break Sensor Top", m_breakSensorTop.get()); 
+        // System.out.println("Handoff: " + m_breakSensorHandoff.get()); 
+        // System.out.println("Secondary: " + m_breakSensorSecondary.get()); 
+        // System.out.println("Top: " + m_breakSensorTop.get()); 
+    }
+
+    public boolean getHandoff(){
+        return m_breakSensorHandoff.get(); 
+    }
+
+    public boolean getSecondary(){
+        return m_breakSensorSecondary.get(); 
+    }
+
+    public boolean getTop(){
+        return m_breakSensorTop.get(); 
     }
 
 
