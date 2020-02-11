@@ -21,6 +21,9 @@ public class SmartDashboardNames {
     // Ball Intake
     public static final String SHOOTER_CONVEYOR_TABLE_NAME = "ShooterConveyor";
     public static final String SHOOTER_CONVEYOR_SPEED = "Speed";
+    public static final String CONVEYOR_HANDOFF_BALL_SENSOR = "Handoff Ball Sensor";
+    public static final String CONVEYOR_SECONDARY_BALL_SENSOR = "Secondary Ball Sensor";
+    public static final String CONVEYOR_TOP_BALL_SENSOR = "Top Ball Sensor";
 
     public static final String SHOOTER_INTAKE_TABLE_NAME = "ShooterIntake";
     public static final String SHOOTER_INTAKE_SPEED = "Speed";

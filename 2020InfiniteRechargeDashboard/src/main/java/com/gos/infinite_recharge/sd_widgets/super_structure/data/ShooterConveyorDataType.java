@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class ShooterConveyorDataType extends ComplexDataType<ShooterConveyorData> {
 
     public ShooterConveyorDataType() {
-        super(SmartDashboardNames.CONTROL_PANEL_TABLE_NAME, ShooterConveyorData.class);
+        super(SmartDashboardNames.SHOOTER_CONVEYOR_TABLE_NAME, ShooterConveyorData.class);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class LiftDataType extends ComplexDataType<LiftData> {
 
     public LiftDataType() {
-        super(SmartDashboardNames.CONTROL_PANEL_TABLE_NAME, LiftData.class);
+        super(SmartDashboardNames.LIFT_TABLE_NAME, LiftData.class);
     }
 
     @Override

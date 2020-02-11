@@ -29,7 +29,7 @@ public class ShooterIntake extends SubsystemBase {
     
     @Override
     public void periodic() {
-        m_customNetworkTable.getEntry("Speed").setDouble(m_motor.get());
+        m_customNetworkTable.getEntry("Speed").setDouble(m_motor.getMotorOutputPercent());
         m_customNetworkTable.getEntry("Position").setBoolean(m_piston.get() == Value.kForward);
     }
 

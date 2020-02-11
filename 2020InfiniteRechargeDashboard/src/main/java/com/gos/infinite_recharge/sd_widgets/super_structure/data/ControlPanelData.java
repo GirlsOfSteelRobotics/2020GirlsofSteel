@@ -6,6 +6,7 @@ import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("PMD.DataClass")
 public class ControlPanelData extends ComplexData<ControlPanelData> {
 
     private final double m_speed;

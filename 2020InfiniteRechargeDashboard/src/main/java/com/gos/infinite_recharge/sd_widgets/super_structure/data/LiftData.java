@@ -6,6 +6,7 @@ import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("PMD.DataClass")
 public class LiftData extends ComplexData<LiftData> {
 
     private final double m_speed;
@@ -20,7 +21,7 @@ public class LiftData extends ComplexData<LiftData> {
     }
 
     public LiftData(String prefix, Map<String, Object> map) {
-        this((Double) map.getOrDefault(prefix + "/" + SmartDashboardNames.CONTROL_PANEL_SPEED, 0.0));
+        this((Double) map.getOrDefault(prefix + "/" + SmartDashboardNames.LIFT_SPEED, 0.0));
     }
 
     public LiftData(double speed) {
@@ -34,17 +35,17 @@ public class LiftData extends ComplexData<LiftData> {
 
     public Map<String, Object> asMap(String prefix) {
         Map<String, Object> map = new HashMap<>();
-        map.put(prefix + SmartDashboardNames.CONTROL_PANEL_SPEED, m_speed);
+        map.put(prefix + SmartDashboardNames.LIFT_SPEED, m_speed);
         return map;
     }
 
     public static boolean hasChanged(Map<String, Object> changes) {
-        return hasChanged(SmartDashboardNames.CONTROL_PANEL_TABLE_NAME + "/", changes);
+        return hasChanged(SmartDashboardNames.LIFT_TABLE_NAME + "/", changes);
     }
 
     public static boolean hasChanged(String prefix, Map<String, Object> changes) {
         boolean changed = false;
-        changed |= changes.containsKey(prefix + SmartDashboardNames.CONTROL_PANEL_SPEED);
+        changed |= changes.containsKey(prefix + SmartDashboardNames.LIFT_SPEED);
 
         return changed;
     }

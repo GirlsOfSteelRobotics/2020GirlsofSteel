@@ -26,6 +26,9 @@ public class SuperStructureStandaloneMain {
     private double m_controlPanelSpeed;
     private double m_liftSpeed;
     private double m_shooterConveyorSpeed;
+    private boolean m_shooterConveyorHandoffBallSensor;
+    private boolean m_shooterConveyorSecondaryBallSensor;
+    private boolean m_shooterConveyorTopBallSensor;
     private double m_shooterIntakeSpeed;
     private boolean m_shooterIntakeIsUp;
     private double m_shooterWheelCurrentRpm;
@@ -62,6 +65,16 @@ public class SuperStructureStandaloneMain {
                 break;
             case D:
                 m_shooterConveyorSpeed = -.5;
+                break;
+
+            case Z:
+                m_shooterConveyorHandoffBallSensor = true;
+                break;
+            case X:
+                m_shooterConveyorSecondaryBallSensor = true;
+                break;
+            case C:
+                m_shooterConveyorTopBallSensor = true;
                 break;
 
             // Shooter Intake
@@ -140,6 +153,15 @@ public class SuperStructureStandaloneMain {
             case Y:
                 m_shooterIntakeIsUp = false;
                 break;
+            case Z:
+                m_shooterConveyorHandoffBallSensor = false;
+                break;
+            case X:
+                m_shooterConveyorSecondaryBallSensor = false;
+                break;
+            case C:
+                m_shooterConveyorTopBallSensor = false;
+                break;
             default:
                 break;
             }
@@ -153,7 +175,7 @@ public class SuperStructureStandaloneMain {
             Map<String, Object> map = new HashMap<>();
             map.putAll(new ControlPanelData(m_controlPanelSpeed).asMap(SmartDashboardNames.CONTROL_PANEL_TABLE_NAME + "/"));
             map.putAll(new LiftData(m_liftSpeed).asMap(SmartDashboardNames.LIFT_TABLE_NAME + "/"));
-            map.putAll(new ShooterConveyorData(m_shooterConveyorSpeed).asMap(SmartDashboardNames.SHOOTER_CONVEYOR_TABLE_NAME + "/"));
+            map.putAll(new ShooterConveyorData(m_shooterConveyorSpeed, m_shooterConveyorHandoffBallSensor, m_shooterConveyorSecondaryBallSensor, m_shooterConveyorTopBallSensor).asMap(SmartDashboardNames.SHOOTER_CONVEYOR_TABLE_NAME + "/"));
             map.putAll(new ShooterIntakeData(m_shooterIntakeSpeed, m_shooterIntakeIsUp).asMap(SmartDashboardNames.SHOOTER_INTAKE_TABLE_NAME + "/"));
             map.putAll(new ShooterWheelsData(m_shooterWheelSpeed, m_shooterWheelCurrentRpm, m_shooterWheelGoalRpm).asMap(SmartDashboardNames.SHOOTER_WHEELS_TABLE_NAME + "/"));
             map.putAll(new WinchData(m_winchSpeed).asMap(SmartDashboardNames.WINCH_TABLE_NAME + "/"));

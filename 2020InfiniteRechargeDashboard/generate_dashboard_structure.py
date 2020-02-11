@@ -79,6 +79,7 @@ import edu.wpi.first.shuffleboard.api.data.ComplexData;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("PMD.DataClass")
 public class {table_name}Data extends ComplexData<{table_name}Data> {{
 
 {variable_defs}
