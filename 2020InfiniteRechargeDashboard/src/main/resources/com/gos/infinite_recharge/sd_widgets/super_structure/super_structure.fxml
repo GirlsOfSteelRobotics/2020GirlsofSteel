@@ -4,15 +4,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<Pane fx:id="m_pane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.gos.infinite_recharge.sd_widgets.super_structure.SuperStructureController">
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:id="m_pane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gos.infinite_recharge.sd_widgets.super_structure.SuperStructureController">
 
-    <children>
+    <center>
         <Group fx:id="m_group">
             <children>
-            <Rectangle x="50" y="150" height="7.25" width="30.0"/>
-            <Rectangle x="54" y="159" height="260" width="80"/>
+            <Rectangle x="0" y="50" height="7.25" width="30.0" fill="aqua"/>
+            <Rectangle x="0" y="50" height="26.0" width="8.0" fill="red"/>
             </children>
         </Group>
-    </children>
-</Pane>
+    </center>
+</BorderPane>

@@ -35,8 +35,8 @@ public class SuperStructureController {
         DoubleBinding scaleBinding = Bindings.createDoubleBinding(() -> {
             double output = Math.min(m_pane.getWidth() / MAX_WIDTH, m_pane.getHeight() / MAX_HEIGHT);
             System.out.println(output);
-            return 50.0;
-            // return output;
+            return 5.0;
+//             return output;
     },m_pane.widthProperty(), m_pane.heightProperty());
 
         Scale scale = new Scale();
