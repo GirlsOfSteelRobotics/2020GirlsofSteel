@@ -11,8 +11,10 @@
     <center>
         <Group fx:id="m_group">
             <children>
-            <Rectangle x="0" y="50" height="7.25" width="30.0" fill="aqua"/>
-            <Rectangle x="0" y="50" height="26.0" width="8.0" fill="red"/>
+            <Rectangle fx:id="m_robotBase" x="0" y="50" height="7.25" width="30.0" fill="lightskyblue"/>
+            <Circle fx:id="m_robotShooter" radius="4" centerX="8" centerY="10" fill="plum"/>
+            <Rectangle fx:id="m_robotConveyor" x="4" y="10" height="40.0" width="8.0" fill="coral"/>
+            <Rectangle fx:id="m_robotIntake" x="-16" y="45" height="5" width="20.0" fill="seagreen"/>
             </children>
         </Group>
     </center>
