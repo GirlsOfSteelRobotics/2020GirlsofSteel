@@ -57,10 +57,10 @@ compileJava.dependsOn generate_version
 
 dependencies {
     
-    compile "org.openjfx:javafx-base:11:win"
-    compile "org.openjfx:javafx-graphics:11:win"
-    compile "org.openjfx:javafx-controls:11:win"
-    compile "org.openjfx:javafx-fxml:11:win"
+    compile "org.openjfx:javafx-base:11:mac"
+    compile "org.openjfx:javafx-graphics:11:mac"
+    compile "org.openjfx:javafx-controls:11:mac"
+    compile "org.openjfx:javafx-fxml:11:mac"
     
     
     compile 'edu.wpi.first.shuffleboard:shuffleboard:' + shuffleboard_version

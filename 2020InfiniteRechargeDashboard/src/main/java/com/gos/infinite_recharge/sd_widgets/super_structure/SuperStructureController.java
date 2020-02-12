@@ -1,5 +1,7 @@
 package com.gos.infinite_recharge.sd_widgets.super_structure;
 
+import javafx.scene.paint.Color;
+
 import com.gos.infinite_recharge.sd_widgets.Utils;
 import com.gos.infinite_recharge.sd_widgets.super_structure.data.ControlPanelData;
 import com.gos.infinite_recharge.sd_widgets.super_structure.data.LiftData;
@@ -39,6 +41,18 @@ public class SuperStructureController {
     private Rectangle m_robotIntake;
 
     @FXML
+    private Circle m_shooterHandoff;
+
+    @FXML
+    private Circle m_shooterSecondary;
+
+    @FXML
+    private Circle m_shooterTop;
+
+    @FXML
+    private Circle m_controlPanel;
+
+    @FXML
     public Rectangle m_winch;
 
     @FXML
@@ -73,6 +87,24 @@ public class SuperStructureController {
 
     public void updateShooterConveyor(ShooterConveyorData shooterConveyorData) {
         m_robotConveyor.setStroke(Utils.getMotorColor(shooterConveyorData.getSpeed()));
+        if (shooterConveyorData.getHandoffBallSensor()) {
+            m_shooterHandoff.setFill(Color.YELLOW);
+        }
+        else {
+            m_shooterSecondary.setFill(Color.TRANSPARENT);
+        }
+        if (shooterConveyorData.getSecondaryBallSensor()) {
+            m_shooterSecondary.setFill(Color.YELLOW);
+        }
+        else {
+            m_shooterSecondary.setFill(Color.TRANSPARENT);
+        }
+        if (shooterConveyorData.getTopBallSensor()) {
+            m_shooterTop.setFill(Color.YELLOW);
+        }
+        else {
+            m_shooterSecondary.setFill(Color.TRANSPARENT);
+        }
     }
 
     public void updateShooterIntake(ShooterIntakeData shooterIntakeData) {
@@ -86,11 +118,14 @@ public class SuperStructureController {
     
 
     public void updateControlPanel(ControlPanelData controlPanelData) {
+        m_controlPanel.setFill(Utils.getMotorColor(controlPanelData.getSpeed());
     }
 
     public void updateWinch(WinchData winchData) {
+        m_winch.setFill(Utils.getMotorColor(winchData.getSpeed()));
     }
 
     public void updateLift(LiftData liftData) {
+        m_lift.setFill(Utils.getMotorColor(liftData.getSpeed()));
     }
 }
