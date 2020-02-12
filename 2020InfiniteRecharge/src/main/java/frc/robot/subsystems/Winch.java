@@ -37,7 +37,7 @@ public class Winch extends SubsystemBase {
     }
 
     public void periodic() {
-        m_customNetworkTable.getEntry("Speed").setDouble(m_motorA.get());
+        m_customNetworkTable.getEntry("Speed").setDouble(m_motorA.getMotorOutputPercent());
     }
 
     public void stop() {

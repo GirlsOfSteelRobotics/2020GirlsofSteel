@@ -28,6 +28,7 @@ public final class Utils {
         return getClampedColor(speed, -1, 1);
     }
 
+    @SuppressWarnings({"PMD.AvoidLiteralsInIfCondition", "PMD.AvoidReassigningParameters"})
     public static Color getClampedColor(double speed, double min, double max) {
 
         if (Double.isNaN(speed)) {
