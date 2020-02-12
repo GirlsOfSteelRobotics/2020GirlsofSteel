@@ -19,6 +19,7 @@ public class ShooterConveyor extends SubsystemBase {
     private final DigitalInput m_breakSensorSecondary;
     private final DigitalInput m_breakSensorTop;
     private final CANSparkMax m_follower;
+    private final CANSparkMax m_follower;
     
     private final NetworkTable m_customNetworkTable;
 
@@ -37,9 +38,6 @@ public class ShooterConveyor extends SubsystemBase {
         m_breakSensorTop = new DigitalInput(Constants.DIGITAL_INPUT_SENSOR_TOP);
 
         m_customNetworkTable = NetworkTableInstance.getDefault().getTable("SuperStructure/ShooterConveyor");
-        // m_follower = new CANSparkMax(Constants.SHOOTER_CONVEYOR_SPARK_B,
-        // MotorType.kBrushless);
-        // m_follower.follow(m_master);
     }
 
 

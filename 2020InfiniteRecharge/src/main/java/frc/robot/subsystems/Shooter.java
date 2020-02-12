@@ -31,8 +31,8 @@ public class Shooter extends SubsystemBase {
     private final NetworkTable m_customNetworkTable;
 
     public Shooter() {
-        m_master = new CANSparkMax(Constants.SHOOTER_SPARK_A, MotorType.kBrushless);
-        m_follower = new CANSparkMax(Constants.SHOOTER_SPARK_B, MotorType.kBrushless);
+        m_master = new CANSparkMax(Constants.SHOOTER_SPARK_A, MotorType.kBrushed);
+        m_follower = new CANSparkMax(Constants.SHOOTER_SPARK_B, MotorType.kBrushed);
         m_encoder  = m_master.getEncoder();
         m_pidController = m_master.getPIDController();
  
@@ -43,6 +43,7 @@ public class Shooter extends SubsystemBase {
         m_follower.follow(m_master);
 
         m_master.setInverted(true);
+        m_follower.setInverted(false);
 
         m_pidController.setP(SHOOTER_KP);
         m_pidController.setFF(SHOOTER_KFF);
@@ -56,7 +57,7 @@ public class Shooter extends SubsystemBase {
         goalRPM = rpm; 
         //m_pidController.setReference(rpm, ControlType.kVelocity);
         double targetVelocityUnitsPer100ms = rpm * 4096 / 600;
-        m_master.set(targetVelocityUnitsPer100ms);
+        m_master.set(1.0 /*targetVelocityUnitsPer100ms*/);
     }
 
     @Override
