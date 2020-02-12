@@ -18,16 +18,15 @@ public class ShooterConveyor extends SubsystemBase {
     private final DigitalInput m_breakSensorHandoff;
     private final DigitalInput m_breakSensorSecondary;
     private final DigitalInput m_breakSensorTop;
-    private final CANSparkMax m_follower;
-    private final CANSparkMax m_follower;
+//    private final CANSparkMax m_follower;
     
     private final NetworkTable m_customNetworkTable;
 
     public ShooterConveyor() {
         m_master = new CANSparkMax(Constants.SHOOTER_CONVEYOR_SPARK_A, MotorType.kBrushless);
-        m_follower = new CANSparkMax(Constants.SHOOTER_CONVEYOR_SPARK_B, MotorType.kBrushless);
+        //m_follower = new CANSparkMax(Constants.SHOOTER_CONVEYOR_SPARK_B, MotorType.kBrushless);
 
-        m_follower.follow(m_master);
+        //m_follower.follow(m_master);
 
         m_master.restoreFactoryDefaults();
         m_master.setSmartCurrentLimit(Constants.SPARK_MAX_CURRENT_LIMIT);
