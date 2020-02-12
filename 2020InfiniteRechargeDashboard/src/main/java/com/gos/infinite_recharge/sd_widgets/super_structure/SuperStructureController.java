@@ -50,7 +50,7 @@ public class SuperStructureController {
     private Circle m_shooterTop;
 
     @FXML
-    private Circle m_controlPanel;
+    private Rectangle m_controlPanel;
 
     @FXML
     public Rectangle m_winch;
@@ -118,7 +118,7 @@ public class SuperStructureController {
     
 
     public void updateControlPanel(ControlPanelData controlPanelData) {
-        m_controlPanel.setFill(Utils.getMotorColor(controlPanelData.getSpeed());
+        m_controlPanel.setFill(Utils.getMotorColor(controlPanelData.getSpeed()));
     }
 
     public void updateWinch(WinchData winchData) {

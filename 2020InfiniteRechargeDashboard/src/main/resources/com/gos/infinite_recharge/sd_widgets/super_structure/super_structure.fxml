@@ -23,9 +23,7 @@
                      radiusX="8"
                      radiusY="8"
                      type="ROUND" />
-                <Circle fx:id="m_shooterHandoff" radius="3" centerX="20" centerY="50" fill="plum"/>
-                <Circle fx:id="m_shooterSecondary" radius="3" centerX="25" centerY="40" fill="plum"/>
-                <Circle fx:id="m_shooterTop" raius="3" centerX="20" centerY="25" fill="plum"/>
+                <Circle fx:id="m_shooterTop" radius="3" centerX="23" centerY="15" fill="plum"/>
                 <Rectangle fx:id="m_controlPanel" x="32" y="30" height="4" width="10" fill="peachPuff"/>
 
                 <Rectangle x="16" y="50" height="7.25" width="30.0" fill="lightskyblue"/>
@@ -42,6 +40,8 @@
                      radiusX="8"
                      radiusY="7"
                      type="ROUND" />
+                <Circle fx:id="m_shooterHandoff" radius="3" centerX="20" centerY="55" fill="plum"/>
+                <Circle fx:id="m_shooterSecondary" radius="3" centerX="23" centerY="50" fill="plum"/>
             </children>
         </Group>
     </center>
