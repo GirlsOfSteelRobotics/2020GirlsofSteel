@@ -56,20 +56,26 @@ public class Shooter extends SubsystemBase {
     public void setRPM(final double rpm) {
         goalRPM = rpm; 
         //m_pidController.setReference(rpm, ControlType.kVelocity);
-        double targetVelocityUnitsPer100ms = rpm * 4096 / 600;
+        // double targetVelocityUnitsPer100ms = rpm * 4096 / 600;
         m_master.set(1.00 /*targetVelocityUnitsPer100ms*/);
     }
 
     @Override
     public void periodic() {
-        double rpm = m_encoder.getVelocity() * 600.0 / 4096;
-        SmartDashboard.putNumber("RPM", rpm);
+        SmartDashboard.putNumber("RPM", getCurrentRpm());
+        SmartDashboard.putNumber("Encoder Position", m_encoder.getPosition());
         m_customNetworkTable.getEntry("Speed").setDouble(m_master.get());
+        m_customNetworkTable.getEntry("Current RPM").setDouble(getCurrentRpm());
 
     }
 
+    private double getCurrentRpm()
+    {
+        return m_encoder.getVelocity();
+    }
+
     public boolean isAtFullSpeed() {
-        double currentRPM = m_encoder.getVelocity() * 600.0 / 4096;
+        double currentRPM = getCurrentRpm();
         double percentError = (goalRPM - currentRPM) / goalRPM * 100;
         return Math.abs(percentError) <= ALLOWABLE_ERROR_PERCENT;
     }
