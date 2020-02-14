@@ -4,6 +4,10 @@ public interface SmartSpeedController {
 
     void setMotorPercentage(double motorPercentage);
 
+    void setVelocityRPM(double rpm);
+
+    double getVelocityRPM();
+
     double getMotorPercentage();
 
     void setP(double p);
@@ -13,4 +17,8 @@ public interface SmartSpeedController {
     void setD(double d);
 
     void setFF(double ff);
+
+	void follow(SmartSpeedController m_master);
+
+	void setInverted(boolean b);
 }

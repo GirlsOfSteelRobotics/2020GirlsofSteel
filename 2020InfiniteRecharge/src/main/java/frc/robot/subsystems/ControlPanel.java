@@ -2,9 +2,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.lib.SmartSpeedController;
+import frc.robot.lib.TalonSRXWrapper;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
@@ -30,7 +30,7 @@ public class ControlPanel extends SubsystemBase {
         yellow, blue, red, green, unknown
     }
 
-    private final WPI_TalonSRX m_controlPanel; // NOPMD
+    private final SmartSpeedController m_controlPanel; // NOPMD
     // private final CANEncoder m_controlPanelEncoder;
 
     private final ColorSensorV3 m_colorSensor;
@@ -48,7 +48,7 @@ public class ControlPanel extends SubsystemBase {
         m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
         m_colorMatcher = new ColorMatch();
 
-        m_controlPanel = new WPI_TalonSRX(Constants.CONTROL_PANEL_TALON);
+        m_controlPanel = new TalonSRXWrapper(Constants.CONTROL_PANEL_TALON);
         // m_controlPanelEncoder = m_controlPanel.getEncoder();
 
         m_colorCounter = 0;
@@ -114,7 +114,7 @@ public class ControlPanel extends SubsystemBase {
         SmartDashboard.putString("Assigned Color", m_currentPanelColor.toString());
         SmartDashboard.putNumber("Proximity", m_colorSensor.getProximity());
 
-        m_customNetworkTable.getEntry("Speed").setDouble(m_controlPanel.get());
+        m_customNetworkTable.getEntry("Speed").setDouble(m_controlPanel.getMotorPercentage());
     }
 
     public int getColorCounter() {
@@ -130,10 +130,10 @@ public class ControlPanel extends SubsystemBase {
     }
 
     public void start() {
-        m_controlPanel.set(ControlMode.PercentOutput, 0.5);
+        m_controlPanel.setMotorPercentage(0.5);
     }
 
     public void stop() {
-        m_controlPanel.set(ControlMode.PercentOutput, 0);
+        m_controlPanel.setMotorPercentage(0);
     }
 }

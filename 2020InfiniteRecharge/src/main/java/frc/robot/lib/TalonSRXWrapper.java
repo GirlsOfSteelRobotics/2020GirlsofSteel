@@ -6,6 +6,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class TalonSRXWrapper implements SmartSpeedController {
     TalonSRX m_talonSRX;
 
+    public TalonSRXWrapper(int id) {
+        m_talonSRX = new TalonSRX(id);
+        m_talonSRX.configFactoryDefault();
+    }
+
     @Override
     public void setMotorPercentage(double motorPercentage) {
         m_talonSRX.set(ControlMode.PercentOutput, motorPercentage);
