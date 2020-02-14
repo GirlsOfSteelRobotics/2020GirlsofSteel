@@ -18,7 +18,7 @@ public interface SmartSpeedController {
 
     void setFF(double ff);
 
-	void follow(SmartSpeedController m_master);
+    void follow(SmartSpeedController lead);
 
-	void setInverted(boolean b);
+    void setInverted(boolean isInverted);
 }

@@ -40,4 +40,27 @@ public class TalonSRXWrapper implements SmartSpeedController {
     public void setFF(double ff) {
         m_talonSRX.config_kF(0, ff);
     }
+
+    @Override
+    public void setVelocityRPM(double rpm) {
+        double targetVelocityUnitsPer100ms = rpm * 4096 / 600;
+        m_talonSRX.set(ControlMode.Velocity, targetVelocityUnitsPer100ms);
+
+    }
+
+    @Override
+    public double getVelocityRPM() {
+        double rpm = m_talonSRX.getSelectedSensorVelocity() * 600 / 4096;
+        return rpm;
+    }
+
+    @Override
+    public void follow(SmartSpeedController lead) {
+        ((TalonSRXWrapper) lead).follow(lead); 
+    }
+
+    @Override
+    public void setInverted(boolean isInverted) {
+        m_talonSRX.setInverted(isInverted);
+    }
 }
