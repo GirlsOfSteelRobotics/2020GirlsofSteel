@@ -17,7 +17,7 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
 
     private static final double SHOOTER_KP = 0.0;
-    private static final double SHOOTER_KFF = 1 / 10600.0;
+    private static final double SHOOTER_KFF = .000093; //1 / 10600.0;
 
     private static final double ALLOWABLE_ERROR_PERCENT = 1;          
 
