@@ -8,6 +8,7 @@ import com.revrobotics.EncoderType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -15,8 +16,8 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
 
-    private static final double SHOOTER_KP = 0.1;
-    private static final double SHOOTER_KFF = 0.00139;
+    private static final double SHOOTER_KP = 0.0;
+    private static final double SHOOTER_KFF = 1 / 10600.0;
 
     private static final double ALLOWABLE_ERROR_PERCENT = 1;          
 
@@ -30,12 +31,20 @@ public class Shooter extends SubsystemBase {
     private double goalRPM; 
     
     private final NetworkTable m_customNetworkTable;
+    private final NetworkTableEntry m_dashboardKp;
+    private final NetworkTableEntry m_dashboardKff;
 
     public Shooter() {
         m_master = new CANSparkMax(Constants.SHOOTER_SPARK_A, MotorType.kBrushed);
         m_follower = new CANSparkMax(Constants.SHOOTER_SPARK_B, MotorType.kBrushed);
-        m_encoder  = m_master.getEncoder(EncoderType.kQuadrature, 4096);
+        m_encoder  = m_master.getEncoder(EncoderType.kQuadrature, 2048);
         m_pidController = m_master.getPIDController();
+
+        m_dashboardKp = SmartDashboard.getEntry("shooter_kp");
+        m_dashboardKff = SmartDashboard.getEntry("shooter_kff");
+
+        SmartDashboard.putNumber("shooter_kp", SHOOTER_KP);
+        SmartDashboard.putNumber("shooter_kff", SHOOTER_KFF);
  
         m_master.restoreFactoryDefaults();
 
@@ -47,6 +56,7 @@ public class Shooter extends SubsystemBase {
 
         m_pidController.setP(SHOOTER_KP);
         m_pidController.setFF(SHOOTER_KFF);
+        m_encoder.setInverted(true);
         
         m_customNetworkTable = NetworkTableInstance.getDefault().getTable("SuperStructure/Shooter");
         NetworkTableInstance.getDefault().getTable("SuperStructure").getEntry(".type").setString("SuperStructure");
@@ -55,9 +65,10 @@ public class Shooter extends SubsystemBase {
     
     public void setRPM(final double rpm) {
         goalRPM = rpm; 
-        //m_pidController.setReference(rpm, ControlType.kVelocity);
+        // m_master.set(rpm);
+        m_pidController.setReference(rpm, ControlType.kVelocity);
         // double targetVelocityUnitsPer100ms = rpm * 4096 / 600;
-        m_master.set(1.00 /*targetVelocityUnitsPer100ms*/);
+        // m_master.set(0.7 /*targetVelocityUnitsPer100ms*/);
     }
 
     @Override
@@ -66,7 +77,12 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("Encoder Position", m_encoder.getPosition());
         m_customNetworkTable.getEntry("Speed").setDouble(m_master.get());
         m_customNetworkTable.getEntry("Current RPM").setDouble(getCurrentRpm());
+        m_customNetworkTable.getEntry("Goal RPM").setDouble(goalRPM);
+        
 
+        m_pidController.setP(m_dashboardKp.getDouble(SHOOTER_KP));
+        m_pidController.setFF(m_dashboardKff.getDouble(SHOOTER_KFF));
+        System.out.println("kp: " + m_dashboardKp.getDouble(SHOOTER_KP) + ", " + m_dashboardKff.getDouble(SHOOTER_KFF) + " goal: " + goalRPM + "== " + getCurrentRpm());
     }
 
     private double getCurrentRpm()

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -23,7 +24,10 @@ public class RunShooterRPMWhileHeld extends CommandBase {
 
     @Override
     public void execute() {
-        m_shooter.setRPM(m_goalRPM);
+        double goalRPM;
+        goalRPM = SmartDashboard.getNumber("Tune RPM", 0);
+        
+        m_shooter.setRPM(goalRPM);
     }
 
     @Override
