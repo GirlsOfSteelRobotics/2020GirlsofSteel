@@ -60,23 +60,8 @@ public class ControlPanelSim {
 
         m_deviceSim = new SimDeviceSim("REV Color Sensor V3[0,82]");
 
-        Shuffleboard.getTab("Simulator").add("Thanger", new Sendable()
-        {
-            @Override
-            public void initSendable(SendableBuilder builder)
-            {
-                builder.setSmartDashboardType("ControlPanel");
-                builder.addDoubleProperty("sim/Wheel Angle", m_controlPanelMotorSim::getPosition, null);
-            }
-        });
-
         m_networkTable = NetworkTableInstance.getDefault().getTable("ControlPanel");
-
         m_networkTable.getEntry(".type").setString("ControlPanel");
-        m_networkTable.getEntry("sim/r").setDouble(0.0);
-        m_networkTable.getEntry("sim/g").setDouble(0.0);
-        m_networkTable.getEntry("sim/b").setDouble(0.0);
-
     }
 
     public void update() {
