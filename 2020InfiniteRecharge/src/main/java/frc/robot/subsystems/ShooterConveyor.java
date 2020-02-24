@@ -40,9 +40,12 @@ public class ShooterConveyor extends SubsystemBase {
 
         m_follower = new CANSparkMax(Constants.SHOOTER_CONVEYOR_SPARK_B, MotorType.kBrushless);
 
-        m_follower.follow(m_master, true);
-
         m_master.restoreFactoryDefaults();
+        m_follower.restoreFactoryDefaults();
+
+        // m_follower.follow(m_master, true);
+        m_follower.setInverted(true);
+
         m_master.setSmartCurrentLimit(Constants.SPARK_MAX_CURRENT_LIMIT);
         m_master.setInverted(false);
 
@@ -73,7 +76,7 @@ public class ShooterConveyor extends SubsystemBase {
 
     public void advanceBall() {
         m_goalPosition = m_encoder.getPosition() + UNIT_HEIGHT;
-        m_pidController.setReference(m_encoder.getPosition() + UNIT_HEIGHT, ControlType.kPosition);
+        // m_pidController.setReference(m_encoder.getPosition() + UNIT_HEIGHT, ControlType.kPosition);
     }
 
     public boolean isAdvanced() {
@@ -95,14 +98,17 @@ public class ShooterConveyor extends SubsystemBase {
     }
 
     public void inConveyor() {
-        m_master.set(.3);
+        m_master.set(0);
+        m_follower.set(.6);
     }
 
     public void outConveyor() {
         m_master.set(-1);
+        m_follower.set(-1);
     }
 
     public void stop() {
         m_master.set(0);
+        m_follower.set(0);
     }
 }
