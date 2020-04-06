@@ -202,7 +202,7 @@ public class Chassis extends SubsystemBase {
         m_leftProperties.updateIfChanged();
         m_rightProperties.updateIfChanged();
 
-        std::cout << "Hello world!" << std::endl;
+        System.out.println("Hello world!");
     }
 
     //////////////////////////////
