@@ -201,6 +201,8 @@ public class Chassis extends SubsystemBase {
 
         m_leftProperties.updateIfChanged();
         m_rightProperties.updateIfChanged();
+
+        std::cout << "Git rocks!" << std::endl;
     }
 
     //////////////////////////////
