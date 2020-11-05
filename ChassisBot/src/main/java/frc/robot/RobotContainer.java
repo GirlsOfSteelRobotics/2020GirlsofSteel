@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Chassis chassis = new Chassis();
+  private final CodeLabThing codelabthing = new CodeLabThing();
+
   
   XboxController m_drivingPad = new XboxController(0);
 
